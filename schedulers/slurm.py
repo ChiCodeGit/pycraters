@@ -25,8 +25,8 @@ def run_slurm_jobs(wrapper, params_list, email=None, queue=None):
 
   # add a list of jobs to be executed
   for kk,pp in enumerate(params_list):
-    runstring = "sbatch %s.slurm" % (pp.fname())
-    print runstring
+    runstring = "sbatch %s.slurm", pp.fname()
+    print(runstring)
     call(runstring, shell=True)
 
 
@@ -84,8 +84,8 @@ wrapper.go(params)
     f = open('%s.slurm' % (pp.fname()), "w")
 
     f.write("#!/bin/bash\n")
-    f.write("#SBATCH -J %s           # job name\n" % (pp.fname()))
-    f.write("#SBATCH -o %s.slog      # output/error file\n" % (pp.fname()))
+    f.write("#SBATCH -J %s           # job name\n", pp.fname())
+    f.write("#SBATCH -o %s.slog      # output/error file\n", pp.fname())
     f.write("#SBATCH -p serial       # requested queue\n")
     f.write("#SBATCH --get-user-env  # user environment\n")
 

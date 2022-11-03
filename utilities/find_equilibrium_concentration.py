@@ -4,9 +4,9 @@ import shelve
 import numpy as np
 import matplotlib.pyplot as plt
 
-import libcraters.IO as io		# allows data extraction from files.
+import pycraters.IO as io		# allows data extraction from files.
 import fittools				# external library for data fitting
-import libcraters.fitfunctions.poly_yamamura_1D as pyam
+import pycraters.fits.poly_yamamura_1D as pyam
 
 import pylab
 def __init__():
@@ -25,11 +25,11 @@ def __init__():
 def ensure_data(params, geom, execline, path):
   targetfile = "%s%s.moms" % (path, params.fname())
   if (os.path.isfile(targetfile) == False):
-    print "No existing data found under %s. Proceeding with simulation" % (targetfile)
+    print("No existing data found under %s. Proceeding with simulation", targetfile)
     sdtrimsp_run(execline, params, geom)
     sdtrimsp_get_statistics(params, geom)
   else:
-    print "%s found." % (targetfile)
+    print("%s found.", targetfile)
 
 
 
@@ -144,7 +144,7 @@ def find_pattern_transitions(energy, angles, finedeg, sx_values, sy_values):
 
       # calculate transition angle (linear approx.)
       dxstar = - (z0-y0)*(x1-x0) / ((z1-y1)-(z0-y0))
-      if dxstar < 0:  print "WARNING: dxstar was found to be %f" % (dxstar)
+      if dxstar < 0:  print("WARNING: dxstar was found to be %f",dxstar)
       tangle = oldangle + dxstar
       ttype = "%s%s" % (oldpattern, newpattern)
 
@@ -652,13 +652,13 @@ def linked_PDE_coefficients_2D(wrapper, params, angles, finedeg, fitmethod=None,
       k2p_fit = fits[5]
       k2m_fit = fits[6]
 
-      print m0e_fit
-      print m1e_fit
-      print m1r_fit
-      print k1p_fit
-      print k1m_fit
-      print k2p_fit
-      print k2m_fit
+      print(m0e_fit)
+      print(m1e_fit)
+      print(m1r_fit)
+      print(k1p_fit)
+      print(k1m_fit)
+      print(k2p_fit)
+      print(k2m_fit)
 
       # record fitted values of the functions, themselves
       rvals["m0ek1p_vals"] = fitfuncD0(k1p_fit, finedeg, evenopts)

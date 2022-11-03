@@ -265,7 +265,7 @@ class PARCAS_Impact_Iterator(GENERIC_Impact_Iterator):
     self.parcas_wrapper = parcas_wrapper
     self.parcas_params  = parcas_params
 
-    print "Initializing: ",
+    print("Initializing: ")
     sys.stdout.flush()
 
     datadir = parcas_params.fname()
@@ -312,7 +312,7 @@ class PARCAS_Impact_Iterator(GENERIC_Impact_Iterator):
 
     # load impact points 
     self.ipoints = np.loadtxt(impactfile, usecols=[1,2,3,4])
-    print "done."
+    print("done.")
     sys.stdout.flush()
 
     # get background displacements
@@ -322,9 +322,9 @@ class PARCAS_Impact_Iterator(GENERIC_Impact_Iterator):
     if (parcas_wrapper.simulation_parameters["remove_background"]):
       background_file = "%s/%s" % (self.datadir, self.parcas_wrapper.simulation_parameters["background"])
       if os.path.isfile(background_file):
-        print 'Loading previously-gathered BG displacements.'
+        print('Loading previously-gathered BG displacements.')
       else:
-        print 'Collecting Background displacements. This may take some time.'
+        print('Collecting Background displacements. This may take some time.')
         self.process_background()
 
       f = shelve.open(background_file)
@@ -370,8 +370,8 @@ class PARCAS_Impact_Iterator(GENERIC_Impact_Iterator):
     for ff,endfile in enumerate(self.endfiles):
 
       realendfile = "%s/%s" % (self.datadir, endfile)
-      print realendfile, ':  ',
-      print 'reading ...',
+      print(realendfile, ':  ')
+      print('reading ...')
       sys.stdout.flush()
 
       # read data from finalpos file  (CURRENTLY WASTEFUL!!!)
@@ -379,7 +379,7 @@ class PARCAS_Impact_Iterator(GENERIC_Impact_Iterator):
       pos2 = np.loadtxt(realendfile, skiprows=rowskips, usecols=(1,2,3))
       pos2 = pos2[0:self.geom.atoms,:]
 
-      print 'analyzing ...',
+      print('analyzing ...')
       sys.stdout.flush()
 
       # get impact info based on this filename
@@ -441,11 +441,11 @@ class PARCAS_Impact_Iterator(GENERIC_Impact_Iterator):
       dxP += (dx*weight) ;
       dyP += (dy*weight) ;
       dzP += (dz*weight) ;
-      print 'done.', '\r'
+      print('done.', '\r')
       sys.stdout.flush()
 
 
-    print 'Final analysis ...'
+    print('Final analysis ...')
     # now analyze the data, atom by atom
     binx0 = np.floor((x0-geom.xMin) / bdata.binsize[0]) ;
     biny0 = np.floor((y0-geom.yMin) / bdata.binsize[1]) ;
@@ -466,12 +466,12 @@ class PARCAS_Impact_Iterator(GENERIC_Impact_Iterator):
       vfyP[sp0[aa], binx0[aa], biny0[aa], binz0[aa]] +=  dyP[aa] ;
       vfzP[sp0[aa], binx0[aa], biny0[aa], binz0[aa]] +=  dzP[aa] ;
 
-    print 'done.', '\r'
+    print('done.', '\r')
     sys.stdout.flush()
 
 
     # save the resulting data to the file
-    print 'saving ...'
+    print('saving ...')
     background_file = "%s/%s" % (self.datadir, self.parcas_wrapper.simulation_parameters["background"])
     f = shelve.open(background_file)
 
@@ -496,7 +496,7 @@ class PARCAS_Impact_Iterator(GENERIC_Impact_Iterator):
     f['vfz'] = vfzP
 
     f.close() ;
-    print 'done.'
+    print('done.')
 
 
 
@@ -540,21 +540,21 @@ class PARCAS_Impact_Iterator(GENERIC_Impact_Iterator):
 
 
     endfile = "%s/%s" % (self.datadir, self.endfiles[self.current_run])
-    print '  reading final position file', endfile, '...',
+    print('  reading final position file', endfile, '...')
     sys.stdout.flush()
 
     pos2 = np.loadtxt(endfile, skiprows=self.rowskips, usecols=[1,2,3])
     Ipos2 = pos2[-1,:]
     pos2 = pos2[0:self.geom.atoms,:]
 
-    print 'done.'
+    print('done.')
     sys.stdout.flush()
 
     # --------------------------------------------
     #   coordinate transformation and wrapping
     # --------------------------------------------
 
-    print '  coordinate transformation and wrapping  ...',
+    print('  coordinate transformation and wrapping  ...')
     sys.stdout.flush()
 
     # get impact info based on this filename
@@ -611,7 +611,7 @@ class PARCAS_Impact_Iterator(GENERIC_Impact_Iterator):
     u2 =   x2 * np.cos(azimuthal) + y2 * np.sin(azimuthal) ;
     v2 = - x2 * np.sin(azimuthal) + y2 * np.cos(azimuthal) ;
 
-    print 'done.'
+    print('done.')
     sys.stdout.flush()
 
     
@@ -620,7 +620,7 @@ class PARCAS_Impact_Iterator(GENERIC_Impact_Iterator):
     #   identify implants, erosion, and redist.
     # --------------------------------------------
 
-    print '  sorting  ...',
+    print('  sorting  ...')
     sys.stdout.flush()
 
     Iu2 =   Ipos2[0] * np.cos(azimuthal) + Ipos2[1] * np.sin(azimuthal) ;
@@ -642,7 +642,7 @@ class PARCAS_Impact_Iterator(GENERIC_Impact_Iterator):
             for aa in rlist
             ]
 
-    print 'done.'
+    print('done.')
     sys.stdout.flush()
 
     # --------------------------------------------

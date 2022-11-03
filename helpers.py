@@ -35,11 +35,11 @@ def __init__():
 def ensure_data(params, geom, execline, path):
   targetfile = "%s%s.moms" % (path, params.fname())
   if (os.path.isfile(targetfile) == False):
-    print "No existing data found under %s. Proceeding with simulation" % (targetfile)
+    print("No existing data found under %s. Proceeding with simulation", targetfile)
     sdtrimsp_run(execline, params, geom)
     sdtrimsp_get_statistics(params, geom)
   else:
-    print "%s found." % (targetfile)
+    print("%s found.", targetfile)
 
 
 
@@ -154,7 +154,7 @@ def find_pattern_transitions(energy, angles, finedeg, sx_values, sy_values):
 
       # calculate transition angle (linear approx.)
       dxstar = - (z0-y0)*(x1-x0) / ((z1-y1)-(z0-y0))
-      if dxstar < 0:  print "WARNING: dxstar was found to be %f" % (dxstar)
+      if dxstar < 0:  print("WARNING: dxstar was found to be %f", dxstar)
       tangle = oldangle + dxstar
       ttype = "%s%s" % (oldpattern, newpattern)
 

@@ -4,9 +4,9 @@ import shelve
 import numpy as np
 import matplotlib.pyplot as plt
 
-import libcraters.IO as io		# allows data extraction from files.
+import pycraters.IO as io		# allows data extraction from files.
 import fittools				# external library for data fitting
-import libcraters.fitfunctions.poly_yamamura_1D as pyam
+import pycraters.fits.poly_yamamura_1D as pyam
 
 import pylab
 def __init__():

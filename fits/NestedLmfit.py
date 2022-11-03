@@ -1,6 +1,6 @@
 import copy
 import numpy as np
-from lmfit import Parameter, Parameters, minimize
+from lmfit import minimize, Parameter, Parameters
 
 
 class FitNode(object):

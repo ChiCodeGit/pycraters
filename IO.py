@@ -6,7 +6,7 @@ class MissingFileError(Exception):
   def __init__(self, filename):
     self.filename = filename
   def __str__(self):
-    return "File not found: %s" % (filename) #repr(self.value)
+    return "File not found: %s", filename #repr(self.value)
 
 
 
@@ -21,9 +21,9 @@ def read_value(path, params, quantity):
 
     # specify the target file
     targetfile = '%s%s.moms' % (path, params.fname())
-    print "targetfile is %s" % (targetfile)
+    print("targetfile is %s", targetfile)
     if (os.path.isfile(targetfile) == False):
-      print "File not found: ", targetfile, "\n\n"
+      print("File not found: ", targetfile, "\n\n")
       raise MissingFileError(targetfile)      
 
     # now try and extract the specified value
@@ -32,11 +32,11 @@ def read_value(path, params, quantity):
       value = f[quantity]
       f.close()
     except KeyError as ee:
-      print "Key Error"
-      print "Working directory is %s." % (os.getcwd())
-      print "Target file is %s" % (targetfile)
-      print "Did not find key %s." % (ee)
-      print "Available keys are", f.keys(), "\n\n"
+      print("Key Error")
+      print("Working directory is %s.", os.getcwd())
+      print("Target file is %s", targetfile)
+      print("Did not find key %s.", ee)
+      print("Available keys are", f.keys(), "\n\n")
 
     return value
 
@@ -57,18 +57,18 @@ def array_range(path, params, field, values, quantity):
     setattr(params, field, val)
     targetfile = '%s%s.moms' % (path, params.fname())
     if (os.path.isfile(targetfile) == False):
-      print "File not found: ", targetfile, "\n\n"
+      print("File not found: ", targetfile, "\n\n")
       raise MissingFileError(targetfile)      
     try:
       f = shelve.open(targetfile)
       yvals.append(f[quantity])
       f.close()
     except KeyError as ee:
-      print "Key Error"
-      print "Working directory is %s." % (os.getcwd())
-      print "Target file is %s" % (targetfile)
-      print "Did not find key %s." % (ee)
-      print "Available keys are", f.keys(), "\n\n"
+      print("Key Error")
+      print("Working directory is %s.", os.getcwd())
+      print("Target file is %s", targetfile)
+      print("Did not find key %s.", ee)
+      print("Available keys are", f.keys(), "\n\n")
 
   return yvals
 
@@ -100,7 +100,7 @@ def extract_atomic_properties(atomstring, lines):
       linenum += 1
       continue
     else:
-      print "\n\nFatal: Element %s not found.\n\n" % (atomstring)
+      print("\n\nFatal: Element %s not found.\n\n", atomstring)
       exit()
 
 

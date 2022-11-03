@@ -78,7 +78,7 @@ wrapper.go(params)
   f.write('getenv       = true\n') 
   if email:
     f.write('notification = always\n') 
-    f.write('notify_user  = %s\n' % (email)) 
+    f.write('notify_user  = %s\n', email)
   else:
     f.write('notification = never\n')
 
@@ -87,15 +87,15 @@ wrapper.go(params)
   f.write('error        = condor.err\n')
 
   # define the executable 
-  f.write('executable   = %s\n\n' % (sys.executable)) 
+  f.write('executable   = %s\n\n', sys.executable) 
 
   # add a list of jobs to be executed
   for kk,pp in enumerate(params_list):
     fprefix = pp.fname()
-    f.write('log          = %s.clog\n' % (fprefix)) 
-    f.write('error        = %s.err\n' % (fprefix)) 
-    f.write('output       = %s.out\n' % (fprefix)) 
-    f.write('arguments    = "condor_exec.py condor.shelf %d"\n' % (kk)) 
+    f.write('log          = %s.clog\n', fprefix)
+    f.write('error        = %s.err\n', fprefix)
+    f.write('output       = %s.out\n', fprefix)
+    f.write('arguments    = "condor_exec.py condor.shelf %d"\n', kk) 
     f.write('queue\n\n') 
 
   # clean up and return

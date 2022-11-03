@@ -399,10 +399,10 @@ class GENERIC_Wrapper(object):
     '''
 
     if (self.check_for_data(params) == False):	# see if data already exists 
-      print "  running simulations."
+      print("running simulations.")
       sys.stdout.flush()
       self.run_simulation(params)		# actually runs the simulation
-      print "  extracting statistics."
+      print("extracting statistics.")
       sys.stdout.flush()
       self.extract_statistics(params)		# extracts the moments from raw data files
       if (save_raw_data == False):

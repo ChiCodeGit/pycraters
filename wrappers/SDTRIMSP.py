@@ -448,7 +448,7 @@ def sdtrimsp_write_tri_inp(path, params, sdtrim_parameters):
 def sdtrimsp_write_layer_inp(params):
   # profile_func needs to return an iterable list of concentrations
   #os.chdir(subfolder)
-  print "Writing layer.inp"
+  print("Writing layer.inp")
   
   f = open("layer.inp", "w")
 

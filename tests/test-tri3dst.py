@@ -6,15 +6,15 @@ import pycraters as pc
 
 # build wrapper and params
 exec_location = sys.argv[1]
-wrapper = pc.create_wrapper("TRI3DST", exec_location)
+wrapper = pc.create_wrapper("TRI3DST", exec_location) 
 params  = wrapper.create_parameters()
 
 #basic parameter setup
 params.beam = "Ar"
-params.energy = 1000
-params.angle = None
-params.impacts = 1000
-params.target = [["Si", 1.0]]
+params.energy = 1000 #eV
+params.angle = None #degrees
+params.impacts = 1000 #number of impacts
+params.target = [["Si", 1.0]] #target material and fraction of target
 
 # do the simulations
 angles = np.linspace(0,80,9)
